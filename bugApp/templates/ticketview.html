@@ -1,0 +1,38 @@
+<h1>Ticket Detail</h1>
+{% for i in data%}
+<ul>
+    <li>
+        {{ i.title }}
+        {{i.date}}
+        <br>
+        Status: {{i.status}}
+        <br>
+        submited by: {{i.author}}
+        <br>
+        {% if i.assigned != None %}
+            assigned to: {{i.assigned}}
+            <br>
+        {% endif %}
+        {% if i.compleated != None %}
+            compleated by: {{i.compleated}}
+            <br>
+        {% endif %}
+        {{i.description}}
+        <br>
+    </li>
+</ul>
+    
+<h3>Actions</h3>
+
+<a href='{% url 'ticket_edit' id=i.id %}''>Edit</a>
+{% if i.status == 'New' %}
+<a href='{% url 'assign' id=i.id %}''>Assign to you</a>
+{% endif %}
+{% if i.assigned != None %}
+<a href='{% url 'unassign' id=i.id %}''>Return Ticket</a>
+{% endif %}
+{% if i.assigned.username == username %}
+<a href='{% url 'compleat' id=i.id %}''>Compleat Ticket</a>
+{% endif %}
+<a href='{% url 'invalid' id=i.id %}''>Mark invalid</a>
+{% endfor%}

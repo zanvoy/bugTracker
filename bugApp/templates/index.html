@@ -1,0 +1,61 @@
+<h1>Home</h1>
+
+
+<a href='/logout/'>logout</a>
+
+<br>
+<br>
+
+<h2>new</h2>
+<ul>
+    {% for i in new%}
+    <li>
+        <h4><a href='{% url 'ticket' id=i.id %}'>{{ i.title }}</a></h4>
+        Date: {{i.date}}
+        <br>
+        Status: {{i.status}}
+        <br>
+        Submitted by: <a href='{% url 'profile' username=i.author.username %}'>{{i.author}}</a>
+        <br>
+        {{i.description}}
+        <br>
+    </li>
+    {% endfor%}
+</ul>
+<h2>In Progress</h2>
+<ul>
+    {% for i in in_progress%}
+    <li>
+        <h4><a href='{% url 'ticket' id=i.id %}'>{{ i.title }}</a></h4>
+            Date: {{i.date}}
+            <br>
+            Status: {{i.status}}
+            <br>
+            Submitted by: <a href='{% url 'profile' username=i.author.username %}'>{{i.author}}</a>
+            <br>
+            assigned to: <a href='{% url 'profile' username=i.assigned.username %}'>{{i.assigned}}</a>
+            <br>
+            {{i.description}}
+            <br>
+        </li>
+    {% endfor%}
+</ul>
+
+<h2>Compleated</h2>
+<ul>
+    {% for i in done%}
+    <li>
+        <h4><a href='{% url 'ticket' id=i.id %}'>{{ i.title }}</a></h4>
+            Date: {{i.date}}
+            <br>
+            Status: {{i.status}}
+            <br>
+            Submitted by: <a href='{% url 'profile' username=i.author.username %}'>{{i.author}}</a>
+            <br>
+            Compleated by: <a href='{% url 'profile' username=i.compleated.username %}'>{{i.compleated}}</a>
+            <br>
+            {{i.description}}
+            <br>
+        </li>
+    {% endfor%}
+</ul>

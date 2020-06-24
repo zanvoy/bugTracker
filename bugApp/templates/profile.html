@@ -1,0 +1,16 @@
+<h2>{{username}}</h2>
+<ul>
+    {% for i in data%}
+    <li>
+        <h4><a href='{% url 'ticket' id=i.id %}'>{{ i.title }}</a></h4>
+        Date: {{i.date}}
+        <br>
+        Status: {{i.status}}
+        <br>
+        Submitted by: <a href='{% url 'profile' username=i.author.username %}'>{{i.author}}</a>
+        <br>
+        {{i.description}}
+        <br>
+    </li>
+    {% endfor%}
+</ul>
